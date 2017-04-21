@@ -21,8 +21,8 @@ void SolveLaplacian(int width, int height, float* unknown, float* target) {
     uint32_t dims[] = { width, height };
     Opt_Plan* plan = Opt_ProblemPlan(state, problem, dims);
     // run the solver
-  //  void* problem_data[] = { unknown, target };
-    //Opt_ProblemSolve(state, plan, problem_data);
+    void* problem_data[] = { unknown, target };
+    Opt_ProblemSolve(state, plan, problem_data);
 }
 
 
@@ -36,9 +36,9 @@ int main(){
   image = imread("../data/cat512.png");
   image.convertTo(image,CV_32F);
 
-  namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
+  /*namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
   imshow( "Display window", image );               // Show our image inside it.
-  waitKey(10);                                     // Wait for a keystroke in the window
+  waitKey(10);  */                                   // Wait for a keystroke in the window
 
   width = image.cols;
   height = image.rows;
