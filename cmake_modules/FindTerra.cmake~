@@ -1,0 +1,61 @@
+# - Find the libopt includes and library
+# This module defines
+#  OPT_INCLUDE_DIR, path to libfreenect/libfreenect.h, etc.
+#  OPT_LIBRARIES, the libraries required to use FREENECT.
+#  OPT_FOUND, If false, do not try to use FREENECT.
+# also defined, but not for general use are
+#  OPT_freenect_LIBRARY, where to find the FREENECT library.
+
+FIND_PATH(OPT_INCLUDE_DIR terra.h
+  PATHS
+  /usr/local/include
+  /usr/include
+  ${terra_ROOT_DIR}
+  $ENV{HOME}/terra
+  $ENV{Terra_ROOT_DIR}
+  ${terra_ROOT_DIR}
+  PATH_SUFFIXES
+  terra
+  include/terra
+  release/include
+)
+
+FIND_LIBRARY(Terra_LIBRARY NAMES libterra.a
+  PATHS
+  /usr/local/lib
+  /usr/lib
+  ${terra_ROOT_DIR}
+  $ENV{HOME}/terra
+  $ENV{Terra_ROOT_DIR}
+  ${terra_ROOT_DIR}
+  PATH_SUFFIXES
+  terra
+  lib
+)
+
+MARK_AS_ADVANCED(
+  Terra_INCLUDE_DIR
+  Terra_LIBRARY)
+
+SET( Terra_FOUND "NO" )
+IF(Terra_INCLUDE_DIR)
+  IF(Terra_LIBRARY)
+    SET( Terra_FOUND "YES" )
+    SET( Terra_LIBRARIES
+      ${Terra_LIBRARY})
+  ENDIF(Terra_LIBRARY)
+ENDIF(Terra_INCLUDE_DIR)
+
+IF(Terra_FOUND)
+    MESSAGE(STATUS "Found opt:")
+    MESSAGE(STATUS " - Includes: ${Terra_INCLUDE_DIR}")
+    MESSAGE(STATUS " - Libraries: ${Terra_LIBRARIES}")
+ELSE(Terra_FOUND)
+  IF(Terra_FIND_REQUIRED)
+    MESSAGE(FATAL_ERROR "Could not find libTerra
+-- please give some paths to CMake or make sure libTerra is installed in your system")
+  ELSE(Terra_FIND_REQUIRED)
+    MESSAGE(STATUS "Could not find libTerra
+-- please give some paths to CMake or make sure libTerra is installed in your system")
+  ENDIF(Terra_FIND_REQUIRED)
+ENDIF(Terra_FOUND)
