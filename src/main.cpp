@@ -9,7 +9,7 @@ extern "C" {
 using namespace cv;
 using namespace std;
 
-void SolveWarping(int width, int height, float* unknown, float* target) {
+void SolveLaplacian(int width, int height, float* unknown, float* target) {
     Opt_InitializationParameters param;
     param.doublePrecision = 1;
     param.verbosityLevel = 1;
@@ -21,8 +21,8 @@ void SolveWarping(int width, int height, float* unknown, float* target) {
     uint32_t dims[] = { width, height };
     Opt_Plan* plan = Opt_ProblemPlan(state, problem, dims);
     // run the solver
-    void* problem_data[] = { unknown, target };
-    Opt_ProblemSolve(state, plan, problem_data);
+  //  void* problem_data[] = { unknown, target };
+    //Opt_ProblemSolve(state, plan, problem_data);
 }
 
 
@@ -37,17 +37,19 @@ int main(){
   image.convertTo(image,CV_32F);
 
   namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
-  imshow( "Display window", image );                   // Show our image inside it.
+  imshow( "Display window", image );               // Show our image inside it.
+  waitKey(10);                                     // Wait for a keystroke in the window
 
   width = image.cols;
   height = image.rows;
-  output = Mat::zeros(height,width,CV_32F);
+  output = Mat::ones(height,width,CV_32F);
 
+  target = new float[width*height];
+  unknown = new float[width*height];
   target = (float*)image.data;
   unknown = (float*)output.data;
-  SolveWarping(width, height, unknown, target);
+  SolveLaplacian(width, height, unknown, target);
 
-  waitKey(0);                                          // Wait for a keystroke in the window
   return 0;
 
 }
