@@ -16,6 +16,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE
 find_package(OpenCV REQUIRED)
 find_package(opt REQUIRED)
 find_package(terra REQUIRED)
+find_package(Threads REQUIRED)
 
 include_directories(${OpenCV_INCLUDE_DIR})
 include_directories(${OPT_INCLUDE_DIR})
@@ -37,6 +38,6 @@ target_link_libraries(Refine
         ${OpenCV_LIBS}
         ${OPT_LIBRARIES}
         ${TERRA_LIBRARIES}
-	       -ldl
-               -pthread
+	${CMAKE_DL_LIBS}
+        ${CMAKE_THREAD_LIBS_INIT}
  )
