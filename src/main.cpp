@@ -41,8 +41,9 @@ int main(){
   width = image.cols;
   height = image.rows;
 
+  SolveWarping(width, height, unknown, target);
+
   waitKey(0);                                          // Wait for a keystroke in the window
   return 0;
-  SolveWarping(width, height, unknown, target);
 
 }

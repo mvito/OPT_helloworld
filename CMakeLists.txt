@@ -36,5 +36,7 @@ add_executable(Refine
 target_link_libraries(Refine
         ${OpenCV_LIBS}
         ${OPT_LIBRARIES}
-	-ldl
+        ${TERRA_LIBRARIES}
+	       -ldl
+               -pthread
  )
