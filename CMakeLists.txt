@@ -6,9 +6,14 @@
 
 cmake_minimum_required(VERSION 2.6.0)
 
-project(OptExample)
+set(PROJECT_NAME OptExample)
+project(${PROJECT_NAME})
 
-set(CMAKE_VERBOSE_MAKEFILE ON) #create new variable value ON
+########## Set debug mode ##########
+set(CMAKE_BUILD_TYPE Debug)
+####################################
+
+set(CMAKE_VERBOSE_MAKEFILE ON) #create new variable value
 
 # Add local path for finding packages, set the local version first
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
@@ -31,10 +36,10 @@ set(public_headers ${SOURCES_DIR}/*.h)
 set(CMAKE_CXX_FLAGS "-O3 -msse2 -msse3 -Wall -std=c++11")
 
 ##### Executable
-add_executable(Refine
+add_executable(${PROJECT_NAME}
         ${SOURCES_DIR}/main.cpp
         )
-target_link_libraries(Refine
+target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}
         ${OPT_LIBRARIES}
         ${TERRA_LIBRARIES}
