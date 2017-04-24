@@ -1,4 +1,5 @@
-W,H = Dim("W",0), Dim("H",1)
+
+local W,H = Dim("W",0), Dim("H",1)
 X = Unknown("X",float,{W,H},0)
 A = Array("A",float,{W,H},1)
 w_fit,w_reg = .1,.9

@@ -11,23 +11,22 @@ using namespace std;
 
 void SolveLaplacian(int width, int height, float* unknown, float* target) {
     Opt_InitializationParameters param;
-    param.doublePrecision = 1;
+    param.doublePrecision = 0;
     param.verbosityLevel = 1;
     param.collectPerKernelTimingInfo = 1;
     Opt_State* state = Opt_NewState(param);
     // load the Opt DSL file containing the cost description
-    Opt_Problem* problem = Opt_ProblemDefine(state,"../src/laplacian.opt", "solverGaussNewtonGPU");
+    Opt_Problem* problem = Opt_ProblemDefine(state,"../src/laplacian.opt", "gaussNewtonGPU");
     // describe the dimensions of the instance of the problem
-    uint32_t dims[] = { width, height };
+    uint32_t dims[] = { (uint32_t)width, (uint32_t)height };
     Opt_Plan* plan = Opt_ProblemPlan(state, problem, dims);
+
     // run the solver
     void* problem_data[] = { unknown, target };
     Opt_ProblemSolve(state, plan, problem_data);
 }
 
-
 int main(){
-
 
   int width, height;
   float *unknown;
