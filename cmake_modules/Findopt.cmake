@@ -10,8 +10,8 @@ FIND_PATH(OPT_INCLUDE_DIR Opt.h
   PATHS
   /usr/local/include
   /usr/include
-  ${OPT_ROOT_DIR}
   $ENV{HOME}/Opt
+  $ENV{HOME}/Optlang/Opt
   $ENV{OPT_ROOT_DIR}
   ${OPT_ROOT_DIR}
   PATH_SUFFIXES
@@ -21,12 +21,13 @@ FIND_PATH(OPT_INCLUDE_DIR Opt.h
   API/release/include
 )
 
-FIND_LIBRARY(OPT_LIBRARY NAMES libOpt.a libOptDev.a
+FIND_LIBRARY(OPT_LIBRARY NAMES libOpt.a
   PATHS
   /usr/local/lib
   /usr/lib
   ${OPT_ROOT_DIR}
   $ENV{HOME}/Opt
+  $ENV{HOME}/Optlang/Opt
   $ENV{OPT_ROOT_DIR}
   ${OPT_ROOT_DIR}
   PATH_SUFFIXES

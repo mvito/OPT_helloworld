@@ -12,6 +12,7 @@ FIND_PATH(TERRA_INCLUDE_DIR terra/terra.h
   /usr/include
   ${TERRA_ROOT_DIR}
   $ENV{HOME}/terra
+  $ENV{HOME}/Optlang/terra
   $ENV{TERRA_ROOT_DIR}
   ${TERRA_ROOT_DIR}
   PATH_SUFFIXES
@@ -27,6 +28,7 @@ FIND_LIBRARY(TERRA_LIBRARY NAMES libterra.a
   /usr/lib
   ${TERRA_ROOT_DIR}
   $ENV{HOME}/terra
+  $ENV{HOME}/Optlang/terra
   $ENV{TERRA_ROOT_DIR}
   ${TERRA_ROOT_DIR}
   PATH_SUFFIXES
